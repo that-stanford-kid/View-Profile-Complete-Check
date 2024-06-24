@@ -1,0 +1,63 @@
+---
+- name: Enable MAB Authentication on Cisco ISE
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ise_host: "localhost"
+    ise_port: 8443
+    ise_username: "{{ lookup('env', 'ISE_USERNAME') }}"
+    ise_password: "{{ lookup('env', 'ISE_PASSWORD') }}"
+    device_mac: "AA:BB:CC:DD:EE:FF"
+    authorization_profile_name: "wired_MAB"
+
+  tasks:
+    - name: Create MAB authorization profile
+      uri:
+        url: "https://{{ ise_host }}:{{ ise_port }}/ers/config/authorizationprofile"
+        method: POST
+        user: "{{ ise_username }}"
+        password: "{{ ise_password }}"
+        headers:
+          Content-Type: "application/json"
+          Accept: "application/json"
+        body: >
+          {
+            "AuthorizationProfile": {
+              "name": "{{ authorization_profile_name }}",
+              "accessType": "ACCESS_ACCEPT",
+              "authzProfileType": "SWITCH",
+              "description": "MAB profile for wired non-802.1X devices"
+            }
+          }
+        status_code: 201
+        validate_certs: no
+      register: authz_profile_response
+
+    - name: Add device to Cisco ISE for MAB
+      uri:
+        url: "https://{{ ise_host }}:{{ ise_port }}/ers/config/endpoint"
+        method: POST
+        user: "{{ ise_username }}"
+        password: "{{ ise_password }}"
+        headers:
+          Content-Type: "application/json"
+          Accept: "application/json"
+        body: >
+          {
+            "ERSEndPoint": {
+              "name": "{{ device_mac }}",
+              "description": "Non-802.1X device",
+              "mac": "{{ device_mac }}",
+              "staticProfileAssignment": false,
+              "staticGroupAssignment": true
+            }
+          }
+        status_code: 201
+        validate_certs: no
+      register: endpoint_response
+
+    - name: Debug output
+      debug:
+        msg:
+          - "Authorization Profile: {{ authz_profile_response }}"
+          - "Endpoint: {{ endpoint_response }}"
