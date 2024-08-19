@@ -3,9 +3,9 @@ import os
 
 # Set up the SSH key and GitLab repository details
 ssh_key_path = os.path.expanduser('~/.ssh/id_rsa')
-gitlab_user = "poneil3411@gmail.com"
+gitlab_user = "1@gmail.com"
 gitlab_host = "gitlab.com"
-gitlab_repo = "https://wwww.gitlab.com/mab-project/prod/mac-auth-byp4ss.git"
+gitlab_repo = "https://wwww.gitlab.com/prod/mac-auth-byp4ss.git"
 clone_directory = "~/your_local_directory"
 
 # Create the SSH client
