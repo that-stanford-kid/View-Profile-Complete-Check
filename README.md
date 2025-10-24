@@ -2,7 +2,7 @@
 Projects / Portfolio
 - Languages: Python, C++, C#, Tesseract, Node, R, postgresql, Javascript
 - Focus: MLOps, Algorithms, Data Science, Solution Architecture, Backend Engineering
-- Highlight: Traveling Salesman Problem with Stochatic Calculous.
+- Highlight: AI Cybersecurity Expert - AI SOC Architecture/ Confidential inference / Whitebox Testing /Traveling Salesman Problem with Stochatic Calculous.
   
 ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")    README-Markdown-Home-Page       ![alt text](https://img.shields.io/badge/ML%7CDL-Algorithms-blueviolet) ![alt text](https://img.shields.io/badge/ML%7CDL-Infrastructure-blue) ![alt_text](https://img.shields.io/badge/Tests-Passing-limegreen) ![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1") 
 
