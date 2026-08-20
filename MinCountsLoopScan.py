@@ -1,11 +1,14 @@
-# min count algo
 def minCount(comps):
-	counts = [1 for n in comps]
+    if not comps:
+        return 0
+    counts = [1] * len(comps)
+    # Left to right
+    for i in range(1, len(comps)):
+        if comps[i] > comps[i - 1]:
+            counts[i] = counts[i - 1] + 1
+    # Right to left
+    for i in range(len(comps) - 2, -1, -1):
+        if comps[i] > comps[i + 1]:
+            counts[i] = max(counts[i], counts[i + 1] + 1)
 
-for i in range(len(comps)-1):
-	if comps[i]<counts[i+1]:
-		counts[i+1] = counts[i]+1
-for i in reversed(range(1, len(competitors))):
-	if competitors[i-1]>counts[i]:
-		counts[i-1] = max(counts[i]+1, counts[i-1])
-return sum(counts)
+    return sum(counts)
